@@ -1,21 +1,18 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>My Tickets</title>
-</head>
-<body>
-    <h2>My Tickets</h2>
-    <a href="{% url 'submit_ticket' %}">Submit New Ticket</a>
-    <br><br>
-    {% for ticket in tickets %}
-        <div>
-            <strong>{{ ticket.title }}</strong> — {{ ticket.category }} — {{ ticket.status }}
-            <br>
-            <small>{{ ticket.created_at }}</small>
-        </div>
-        <hr>
-    {% empty %}
-        <p>No tickets yet.</p>
-    {% endfor %}
-</body>
-</html>
+{% extends 'tickets/base.html' %}
+{% block content %}
+<h2>My Tickets</h2>
+<a href="{% url 'submit_ticket' %}" class="btn btn-primary mb-3">Submit New Ticket</a>
+{% for ticket in tickets %}
+<div class="card mb-3">
+    <div class="card-body">
+        <h5 class="card-title">{{ ticket.title }}</h5>
+        <p class="card-text">{{ ticket.description }}</p>
+        <span class="badge bg-secondary">{{ ticket.category }}</span>
+        <span class="badge bg-primary">{{ ticket.status }}</span>
+        <small class="text-muted d-block mt-2">{{ ticket.created_at }}</small>
+    </div>
+</div>
+{% empty %}
+<p>No tickets yet.</p>
+{% endfor %}
+{% endblock %}
