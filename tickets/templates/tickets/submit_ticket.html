@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Submit Ticket</title>
+</head>
+<body>
+    <h2>Submit a Ticket</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Submit</button>
+    </form>
+    <a href="{% url 'ticket_list' %}">View my tickets</a>
+</body>
+</html>

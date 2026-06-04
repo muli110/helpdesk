@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Tickets</title>
+</head>
+<body>
+    <h2>My Tickets</h2>
+    <a href="{% url 'submit_ticket' %}">Submit New Ticket</a>
+    <br><br>
+    {% for ticket in tickets %}
+        <div>
+            <strong>{{ ticket.title }}</strong> — {{ ticket.category }} — {{ ticket.status }}
+            <br>
+            <small>{{ ticket.created_at }}</small>
+        </div>
+        <hr>
+    {% empty %}
+        <p>No tickets yet.</p>
+    {% endfor %}
+</body>
+</html>
